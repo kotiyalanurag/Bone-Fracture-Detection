@@ -1,0 +1,9 @@
+# folders
+Dataset/
+Models/
+BFDD/
+.ipynb_checkpoints/
+
+# cache
+.DS_Store
+__pycache__
