@@ -1,7 +1,7 @@
 import cv2
 from torch.utils.data import Dataset
 
-CLASSTOLABEL = {'fractured': 0, "not fractured": 1}
+CLASSTOLABEL = {"fractured": 0, "not fractured": 1}
 
 class BoneFractureDataset(Dataset):
     

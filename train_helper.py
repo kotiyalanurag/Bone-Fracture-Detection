@@ -39,10 +39,10 @@ transform = Compose([
         transforms.ToPILImage(),
         transforms.Resize(224),
         transforms.CenterCrop(224),
-        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.RandomHorizontalFlip(p = 0.5),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                             std=[0.229, 0.224, 0.225] )
+        transforms.Normalize(mean = [0.485, 0.456, 0.406],
+                             std = [0.229, 0.224, 0.225] )
         ])
 
 # initialising train, test, and validation datasets

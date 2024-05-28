@@ -1,6 +1,7 @@
 import os
 import random
 import glob
+import base64
 
 from datetime import datetime
 from pandas.core.common import flatten
@@ -358,3 +359,20 @@ def plot_model_performance(train_loss, train_acc, val_loss, val_acc, name = "Cus
     plt.legend(legends, loc = 'upper left')
     plt.grid()
     plt.show()
+
+# utility function to load image for flask app
+    
+def decodeImage(imgstring, fileName):
+    
+    """ A function to load image from flask app
+
+    Args:
+        imgstring (object): image object to be decoded
+        fileName (string): a file name for the image
+    """
+    
+    imgdata = base64.b64decode(imgstring)
+    
+    with open(fileName, 'wb') as f:
+        f.write(imgdata)
+        f.close()
