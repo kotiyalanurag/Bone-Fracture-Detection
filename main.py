@@ -1,4 +1,5 @@
 import os
+import mlflow.pytorch
 import torch.optim.lr_scheduler as lr_scheduler
 
 from utils import *
@@ -66,6 +67,22 @@ def main(device, train_data, val_data, epochs = 3, lr = 0.001, gamma = 0.99):
         # if best_acc < val_accuracy:
         #     best_acc = val_accuracy
         #     save_model(model, path = "Models/customresnet_best_weights.pt")  
+    
+    # tracking experiments with mlflow 
+    mlflow.pytorch.autolog(disable = True)
+    
+    with mlflow.start_run(run_name = "Resnet50"):
+        
+        mlflow.set_tag("model_name", "Custom Resnet")
+        
+        mlflow.log_param("epochs", epochs)
+        mlflow.log_param("learning rate", lr)
+        mlflow.log_param("scheduler rate", gamma)
+        
+        avg_test_loss, test_accuracy = test_epoch(model, device, test_data, test_image_paths, loss_fn)
+        
+        mlflow.log_metric("test accuracy", test_accuracy)
+        mlflow.log_metric("test loss", avg_test_loss)
         
 if __name__ == "__main__":
     
